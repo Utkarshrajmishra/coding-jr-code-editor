@@ -13,7 +13,7 @@ const CodeEditor = () => {
     <section>
       <div className="h-12 justify-between px-2 bg-neutral-100 flex items-center  w-[calc(100vw-450px)]">
         <div className="text-xs">
-          <select className="text-xs text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 mr-3 rounded font-inter">
+          <select className="text-xs text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 rounded font-inter">
             <option>Javascript</option>
             <option>C++</option>
             <option>C</option>
