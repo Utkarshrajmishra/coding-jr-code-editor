@@ -13,17 +13,22 @@ const CodeEditor = () => {
     <section>
       <div className="h-12 justify-between px-2 bg-neutral-100 flex items-center  w-[calc(100vw-450px)]">
         <div className="text-xs">
-            <p>Language</p>
+          <select className="text-xs text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 mr-3 rounded font-inter">
+            <option>Javascript</option>
+            <option>C++</option>
+            <option>C</option>
+            <option>Python</option>
+            <option>Java</option>
+          </select>
         </div>
         <div className="flex items-center gap-3">
-            <GrPowerReset className="text-neutral-500"/>
+          <GrPowerReset className="text-neutral-500" />
           <button className="text-xs text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 rounded font-inter">
             Run Code
           </button>
           <button className="text-xs text-white bg-emerald-600 py-[6px] px-3 rounded font-inter">
             Submit Code
           </button>
-          
         </div>
       </div>
       <CodeMirror
