@@ -27,7 +27,10 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
   const { setProblem } = context;
 
   const handleProblemChange = (index: number) => {
-    setProblem(index);
+    setProblem({
+        runCode:false,
+        problemNo:index
+    });
     setOpen(false);
   };
 

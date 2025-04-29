@@ -13,7 +13,7 @@ const Header = () => {
         throw new Error('Problem Context not found')
       }
 
-      const {problemNo}=context;
+      const {problem}=context;
 
   return (
     <header className="h-12 px-6 text-zinc-100 gap-4 font-inter bg-slate-950 flex items-center justify-between">
@@ -30,7 +30,7 @@ const Header = () => {
           <p className="">Coding Problem</p>
           <MdKeyboardArrowRight className="size-4 text-[#656565]" />
 
-          <p className="font-light">{problems[problemNo].title}</p>
+          <p className="font-light">{problems[problem.problemNo].title}</p>
         </div>
       </div>
       <div className="border-[1px] flex items-center gap-1 text-xs px-4 border-zinc-500 p-1 rounded">

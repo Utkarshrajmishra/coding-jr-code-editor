@@ -1,8 +1,13 @@
 import { createContext, useState } from "react";
 
-type ProblemContextType={
+type ProblemType={
     problemNo:number,
-    setProblem:React.Dispatch<React.SetStateAction<number>>
+    runCode:boolean,
+}
+
+type ProblemContextType={
+    problem:ProblemType,
+    setProblem:React.Dispatch<React.SetStateAction<ProblemType>>
 }
 
 type ProblemContextProviderProps={
@@ -12,10 +17,13 @@ type ProblemContextProviderProps={
 export const ProblemContext = createContext<ProblemContextType | null>(null);
 
 export const ProblemContextProvider=({children}:ProblemContextProviderProps)=>{
-    const [problemNo,setProblem]=useState<number>(0)
+    const [problem,setProblem]=useState<ProblemType>({
+        problemNo:0,
+        runCode:false
+    })
 
     return(
-        <ProblemContext.Provider value={{problemNo, setProblem}}>
+        <ProblemContext.Provider value={{problem, setProblem}}>
             {children}
         </ProblemContext.Provider>
     )

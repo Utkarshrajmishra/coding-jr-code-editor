@@ -1,12 +1,21 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { GrPowerReset } from "react-icons/gr";
 import { getDefaultCode, languageExtensions } from "../lib/utils";
+import { ProblemContext } from "../context/problemContext";
+
+
 
 const CodeEditor = () => {
   const [value, setValue] = useState("console.log('hello world!');");4
     const [language, setLanguage] = useState("javascript");
+    const context=useContext(ProblemContext)
 
+    if(!context){
+      throw new Error('Problem Context not found')
+    }
+
+    const {setProblem}=context
 
   const onChange = React.useCallback((val: string) => {
     console.log("val:", val);
@@ -17,6 +26,13 @@ const CodeEditor = () => {
       const selectedLang = e.target.value;
       setLanguage(selectedLang);
       setValue(getDefaultCode(selectedLang));
+    };
+
+    const runCode = () => {
+      setProblem((prev) => ({
+        problemNo: prev.problemNo,
+        runCode: true,
+      }));
     };
 
 
@@ -37,7 +53,7 @@ const CodeEditor = () => {
         </div>
         <div className="flex items-center gap-3">
           <GrPowerReset className="text-neutral-500" />
-          <button className="text-xs text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 rounded font-inter">
+          <button onClick={runCode} className="text-xs cursor-pointer text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 rounded font-inter">
             Run Code
           </button>
           <button className="text-xs text-white bg-emerald-600 py-[6px] px-3 rounded font-inter">

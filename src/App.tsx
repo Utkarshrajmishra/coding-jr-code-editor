@@ -1,9 +1,11 @@
+import { useState } from "react";
 import CodeEditor from "./components/CodeEditor";
 import Header from "./components/Header";
 import Problem from "./components/Problem";
 import TestCase from "./components/Testcase";
 
 function App() {
+  const [runcode, setRunCode]=useState(false)
   return (
     <>
       <main className="h-screen overflow-y-hidden">
@@ -11,7 +13,7 @@ function App() {
         <div className="flex w-full">
           <Problem />
           <div>
-            <CodeEditor />
+            <CodeEditor/>
             <TestCase/>
           </div>
         </div>
