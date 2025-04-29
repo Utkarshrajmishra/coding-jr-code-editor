@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AiFillCode } from "react-icons/ai";
 import { problems } from "../constants/problems";
 import { ProblemContext } from "../context/problemContext";
-
+import { Check } from "lucide-react";
 const TestCase = () => {
   const [activeTest, setActiveTest] = useState(0);
   const context = useContext(ProblemContext);
@@ -14,7 +14,6 @@ const TestCase = () => {
 
   return (
     <section className="border-t h-[calc(100vh-349px)] overflow-y-scroll font-inter border-neutral-300 bg-neutral-100 flex flex-col">
-      {/* Header */}
       <div className="h-10 px-4 border-b border-neutral-200 flex items-center gap-2 bg-white">
         <AiFillCode className="size-5 text-neutral-600" />
         <p className="text-neutral-700 text-sm font-medium">Test Cases</p>
@@ -24,7 +23,7 @@ const TestCase = () => {
         {problems[problem.problemNo].testCases?.map((_, index) => (
           <button
             key={index}
-            className={`px-4 text-[0.83rem] py-2  font-medium transition-colors ${
+            className={`px-4 flex items-center gap-2 text-[0.83rem] py-2  font-medium transition-colors ${
               activeTest === index
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-neutral-600 hover:bg-neutral-50"
@@ -32,6 +31,10 @@ const TestCase = () => {
             onClick={() => setActiveTest(index)}
           >
             Case {index + 1}
+            {
+              problem.runCode && 
+              <Check className="size-4 text-emerald-700"/>
+            }
           </button>
         ))}
       </div>
