@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -8,6 +8,7 @@ import {
 } from "@headlessui/react";
 import { X } from "lucide-react";
 import { problems } from "../constants/problems";
+import { ProblemContext } from "../context/problemContext";
 
 type SidebarProps = {
   open: boolean;
@@ -15,6 +16,21 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ open, setOpen }: SidebarProps) => {
+  const context = useContext(ProblemContext);
+
+  if (!context) {
+    throw new Error(
+      "CounterDisplay must be used within a CounterContextProvider"
+    );
+  }
+
+  const { setProblem } = context;
+
+  const handleProblemChange = (index: number) => {
+    setProblem(index);
+    setOpen(false);
+  };
+
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
       <DialogBackdrop
@@ -51,6 +67,7 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                 <div className="relative mt-4 flex-1 px-4">
                   {problems?.map((item, index) => (
                     <div
+                      onClick={() => handleProblemChange(index)}
                       key={index}
                       className={`py-3 px-3 rounded-lg mb-2 transition-all duration-200 cursor-pointer hover:bg-blue-50 ${
                         index % 2 === 0 ? "bg-slate-50" : "bg-white"

@@ -1,29 +1,19 @@
 import ReactMarkdown from "react-markdown";
 import { problems } from "../constants/problems";
+import { useContext } from "react";
+import { ProblemContext } from "../context/problemContext";
 
 const Problem = () => {
+        const context = useContext(ProblemContext);
+        if (!context) {
+          throw new Error("Problem Context not found");
+        }
+
+        const { problemNo } = context;
+
   return (
     <section className="font-inter border-r border-neutral-300 py-3 px-5 w-[450px] h-[100vh] overflow-y-scroll">
       <div className="space-y-6">
-        {/* Tags Section
-        <div className="flex text-sm gap-3 flex-wrap">
-          <p className="text-xs rounded-full py-1 text-white flex items-center px-3 bg-emerald-600">
-            {problems[0].difficulty}
-          </p>
-
-          <div className="flex gap-2 flex-wrap">
-            {problems[0].tags.map((item, index) => (
-              <p
-                key={index}
-                className="text-xs py-1 rounded-full text-white flex items-center px-3 bg-neutral-600"
-              >
-                {item}
-              </p>
-            ))}
-          </div>
-        </div> */}
-
-        {/* Problem Description */}
         <div className="text-neutral-700 mt-0">
           <ReactMarkdown
             components={{
@@ -65,7 +55,7 @@ const Problem = () => {
               ),
             }}
           >
-            {problems[0].desc}
+            {problems[problemNo].desc}
           </ReactMarkdown>
         </div>
 
@@ -78,7 +68,7 @@ const Problem = () => {
                 Input:
               </p>
               <pre className="bg-white p-2  text-zinc-800 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
-                {problems[0].example.input}
+                {problems[problemNo].example.input}
               </pre>
             </div>
 
@@ -87,7 +77,7 @@ const Problem = () => {
                 Output:
               </p>
               <pre className="bg-white p-2 text-zinc-800 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
-                {problems[0].example.output}
+                {problems[problemNo].example.output}
               </pre>
             </div>
 
@@ -96,7 +86,7 @@ const Problem = () => {
                 Explanation:
               </p>
               <p className="text-sm text-zinc-800 leading-relaxed">
-                {problems[0].example.explanation}
+                {problems[problemNo].example.explanation}
               </p>
             </div>
           </div>
@@ -107,7 +97,7 @@ const Problem = () => {
             Constraints
           </p>
           <ul className="space-y-2 list-disc pl-5">
-            {problems[0].constraints?.map((item, index) => (
+            {problems[problemNo].constraints?.map((item, index) => (
               <li
                 key={index}
                 className="text-sm text-neutral-700 leading-relaxed"

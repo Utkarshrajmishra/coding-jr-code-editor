@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillCode } from "react-icons/ai";
 import { problems } from "../constants/problems";
+import { ProblemContext } from "../context/problemContext";
 
 const TestCase = () => {
   const [activeTest, setActiveTest] = useState(0);
+        const context = useContext(ProblemContext);
+        if (!context) {
+          throw new Error("Problem Context not found");
+        }
+
+        const { problemNo } = context;
+
 
   return (
     <section className="border-t h-[calc(100vh-349px)] overflow-y-scroll font-inter border-neutral-300 bg-neutral-100 flex flex-col">
