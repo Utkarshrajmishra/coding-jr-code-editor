@@ -1,3 +1,8 @@
+import { cpp } from "@codemirror/lang-cpp";
+import { java } from "@codemirror/lang-java";
+import { javascript } from "@codemirror/lang-javascript";
+import { python } from "@codemirror/lang-python";
+
 export const getDefaultCode = (lang: string): string => {
   switch (lang) {
     case "python":
@@ -11,4 +16,11 @@ export const getDefaultCode = (lang: string): string => {
     default:
       return "console.log('hello world!');";
   }
+};
+
+export const languageExtensions: { [key: string]: any } = {
+  javascript: javascript({ jsx: true }),
+  python: python(),
+  cpp: cpp(),
+  java: java(),
 };
