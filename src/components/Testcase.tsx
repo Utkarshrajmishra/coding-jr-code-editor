@@ -5,13 +5,12 @@ import { ProblemContext } from "../context/problemContext";
 
 const TestCase = () => {
   const [activeTest, setActiveTest] = useState(0);
-        const context = useContext(ProblemContext);
-        if (!context) {
-          throw new Error("Problem Context not found");
-        }
+  const context = useContext(ProblemContext);
+  if (!context) {
+    throw new Error("Problem Context not found");
+  }
 
-        const { problemNo } = context;
-
+  const { problemNo } = context;
 
   return (
     <section className="border-t h-[calc(100vh-349px)] overflow-y-scroll font-inter border-neutral-300 bg-neutral-100 flex flex-col">
@@ -22,7 +21,7 @@ const TestCase = () => {
       </div>
 
       <div className="flex  border-b border-neutral-200 bg-white">
-        {problems[0].testCases?.map((item, index) => (
+        {problems[problemNo].testCases?.map((_, index) => (
           <button
             key={index}
             className={`px-4 text-[0.83rem] py-2  font-medium transition-colors ${
@@ -46,7 +45,7 @@ const TestCase = () => {
               </p>
 
               <pre className="bg-neutral-50 text-zinc-800 p-2 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto whitespace-pre-wrap">
-                {problems[0].testCases[activeTest].input}
+                {problems[problemNo].testCases[activeTest].input}
               </pre>
             </div>
 
@@ -56,7 +55,7 @@ const TestCase = () => {
               </p>
 
               <pre className="bg-neutral-50 text-zinc-800 text-light  text-xs p-2 rounded border border-neutral-200 text-sm font-mono overflow-x-auto whitespace-pre-wrap">
-                {problems[0].testCases[activeTest].output}
+                {problems[problemNo].testCases[activeTest].output}
               </pre>
             </div>
           </div>
