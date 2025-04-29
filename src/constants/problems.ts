@@ -13,7 +13,7 @@ If a string is longer than the other, append the additional letters onto the end
 Return the merged string.
 `,
     example: {
-      input: { word1: "abc", word2: "pqr" },
+      input: " word1: abc, word2: pqr" ,
       output: "apbqcr",
       explanation: "Merge alternately: a from word1, p from word2, etc.",
     },
