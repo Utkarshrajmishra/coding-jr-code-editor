@@ -18,8 +18,8 @@ Return the merged string.
       explanation: "Merge alternately: a from word1, p from word2, etc.",
     },
     testCases: [
-      { input: { word1: "ab", word2: "pqrs" }, output: "apbqrs" },
-      { input: { word1: "abcd", word2: "pq" }, output: "apbqcd" },
+      { input: " word1: ab, word2: pqrs ", output: "apbqrs" },
+      { input: " word1: abcd, word2: pq ", output: "apbqcd" },
     ],
     constraints: [
       "1 <= word1.length, word2.length <= 100",

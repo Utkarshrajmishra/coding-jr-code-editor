@@ -3,7 +3,7 @@ import { problems } from "../constants/problems";
 
 const Problem = () => {
   return (
-    <section className="font-inter border-r border-neutral-300 py-3 px-5 w-[450px] h-[100vh] overflow-y-auto">
+    <section className="font-inter border-r border-neutral-300 py-3 px-5 w-[450px] h-[100vh] overflow-y-scroll">
       <div className="space-y-6">
         {/* Tags Section
         <div className="flex text-sm gap-3 flex-wrap">
@@ -77,7 +77,7 @@ const Problem = () => {
               <p className="font-medium text-sm text-neutral-700 mb-1">
                 Input:
               </p>
-              <pre className="bg-white p-2 rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
+              <pre className="bg-white p-2  text-zinc-800 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
                 {problems[0].example.input}
               </pre>
             </div>
@@ -86,7 +86,7 @@ const Problem = () => {
               <p className="font-medium text-sm text-neutral-700 mb-1">
                 Output:
               </p>
-              <pre className="bg-white p-2 rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
+              <pre className="bg-white p-2 text-zinc-800 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
                 {problems[0].example.output}
               </pre>
             </div>
@@ -95,15 +95,14 @@ const Problem = () => {
               <p className="font-medium text-sm text-neutral-700 mb-1">
                 Explanation:
               </p>
-              <p className="text-sm text-neutral-600 leading-relaxed">
+              <p className="text-sm text-zinc-800 leading-relaxed">
                 {problems[0].example.explanation}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Constraints Section */}
-        <div className="space-y-3 border-t border-neutral-200 pt-4">
+        <div className="space-y-3 mb-4 border-t border-neutral-200 pt-4">
           <p className="font-semibold text-neutral-800 text-base">
             Constraints
           </p>

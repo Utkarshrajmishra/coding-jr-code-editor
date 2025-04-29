@@ -18,10 +18,10 @@ const CodeEditor = () => {
         <div className="flex items-center gap-3">
             <GrPowerReset className="text-neutral-500"/>
           <button className="text-xs text-zinc-700 border-1 text-white border-zinc-400 py-[6px] px-3 rounded font-inter">
-            Excute
+            Run Code
           </button>
           <button className="text-xs text-white bg-emerald-600 py-[6px] px-3 rounded font-inter">
-            Submit
+            Submit Code
           </button>
           
         </div>
@@ -29,7 +29,7 @@ const CodeEditor = () => {
       <CodeMirror
         value={value}
         width="calc(100vw-450px)"
-        height="400px"
+        height="300px"
         extensions={[javascript({ jsx: true })]}
         onChange={onChange}
       />
