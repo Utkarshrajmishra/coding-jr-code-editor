@@ -24,3 +24,44 @@ export const languageExtensions: { [key: string]: any } = {
   cpp: cpp(),
   java: java(),
 };
+
+export const setCode = (code: string, problemId: number, lang: string) => {
+  const solution = {
+    problemId,
+    code,
+    lang,
+  };
+  const existingSolutions = JSON.parse(
+    localStorage.getItem("solutions") || "[]"
+  );
+
+  const updatedSolutions = existingSolutions.filter(
+    (item: any) => item.problemId !== problemId
+  );
+
+  updatedSolutions.push(solution);
+
+  localStorage.setItem("solutions", JSON.stringify(updatedSolutions));
+};
+
+export const markComplete = (questionId: number) => {
+  const questions: number[] = JSON.parse(
+    localStorage.getItem("solved") || "[]"
+  );
+
+  if (!questions.includes(questionId)) {
+    questions.push(questionId);
+    localStorage.setItem("solved", JSON.stringify(questions));
+  }
+};
+
+export const getCompletedQuestions = (questionId: number) => {
+  const questions: number[] = JSON.parse(
+    localStorage.getItem("solved") || "[]"
+  );
+
+  if (questions.includes(questionId)) {
+    return true;
+  }
+  return false;
+};

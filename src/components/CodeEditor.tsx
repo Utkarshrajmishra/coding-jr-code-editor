@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { GrPowerReset } from "react-icons/gr";
-import { getDefaultCode, languageExtensions } from "../lib/utils";
+import { getDefaultCode, languageExtensions, markComplete, setCode } from "../lib/utils";
 import { ProblemContext } from "../context/problemContext";
+import { problems } from "../constants/problems";
 
 type CodeEditorProps = {
   setSubmit: (submit: boolean) => void;
@@ -19,13 +20,11 @@ const CodeEditor = ({ setSubmit, isMobile }: CodeEditorProps) => {
     throw new Error("Problem Context not found");
   }
 
-  const { setProblem } = context;
+  const { setProblem, problem } = context;
 
-  // Adjust editor height based on screen size
   useEffect(() => {
     const updateHeight = () => {
       if (window.innerWidth < 768) {
-        // Mobile: smaller height
         setEditorHeight("550px");
       } else {
         setEditorHeight("300px");
@@ -53,6 +52,8 @@ const CodeEditor = ({ setSubmit, isMobile }: CodeEditorProps) => {
       problemNo: prev.problemNo,
       runCode: true,
     }));
+
+    setCode(value, problems[problem.problemNo].id, language);
   };
 
   return (
@@ -84,7 +85,10 @@ const CodeEditor = ({ setSubmit, isMobile }: CodeEditorProps) => {
           </button>
 
           <button
-            onClick={() => setSubmit(true)}
+            onClick={() =>{
+              setSubmit(true);
+              markComplete(problems[problem.problemNo].id)
+            }}
             className="text-xs cursor-pointer text-white bg-emerald-600 py-1 sm:py-[6px] px-2 sm:px-3 rounded font-inter"
           >
             Submit

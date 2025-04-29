@@ -1,24 +1,36 @@
 import ReactMarkdown from "react-markdown";
 import { problems } from "../constants/problems";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProblemContext } from "../context/problemContext";
+import { getCompletedQuestions } from "../lib/utils";
+import { Check } from "lucide-react";
 
 const Problem = () => {
-        const context = useContext(ProblemContext);
-        if (!context) {
-          throw new Error("Problem Context not found");
-        }
+  const [solved, setSolved] = useState(false);
+  const context = useContext(ProblemContext);
+  if (!context) {
+    throw new Error("Problem Context not found");
+  }
 
-        const { problem } = context;
+  const { problem } = context;
+
+  useEffect(() => {
+    if (getCompletedQuestions(problems[problem.problemNo].id)) {
+      setSolved(true);
+    }
+  }, [problem]);
 
   return (
     <section className="font-inter border-r border-neutral-300 s  md:w-[450px] h-[100vh] overflow-y-scroll">
       <div>
         <div className="pb-4 px-4 ">
           <div className="text-neutral-700 mt-4">
-            <p className="text-neutral-900">
-              {problems[problem.problemNo].title}
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-neutral-900">
+                {problems[problem.problemNo].title}
+              </p>
+              <Check className="size-5 sm:size-5 text-emerald-700" />
+            </div>
             <ReactMarkdown
               components={{
                 p: ({ node, ...props }) => (
@@ -70,7 +82,7 @@ const Problem = () => {
                 <p className="font-medium text-sm text-neutral-700 mb-1">
                   Input:
                 </p>
-                <pre className="bg-white p-2  text-zinc-800 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
+                <pre className="bg-white p-2  text-zinc-800 text-xs rounded border border-neutral-200  font-mono overflow-x-auto">
                   {problems[problem.problemNo].example.input}
                 </pre>
               </div>
@@ -79,7 +91,7 @@ const Problem = () => {
                 <p className="font-medium text-sm text-neutral-700 mb-1">
                   Output:
                 </p>
-                <pre className="bg-white p-2 text-zinc-800 text-xs rounded border border-neutral-200 text-sm font-mono overflow-x-auto">
+                <pre className="bg-white p-2 text-zinc-800 text-xs rounded border border-neutral-200  font-mono overflow-x-auto">
                   {problems[problem.problemNo].example.output}
                 </pre>
               </div>
