@@ -5,7 +5,7 @@ import { GrPowerReset } from "react-icons/gr";
 
 const CodeEditor = () => {
   const [value, setValue] = React.useState("console.log('hello world!');");
-  const onChange = React.useCallback((val: any, viewUpdate: any) => {
+  const onChange = React.useCallback((val: any, _: any) => {
     console.log("val:", val);
     setValue(val);
   }, []);
